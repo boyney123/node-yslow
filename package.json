@@ -1,0 +1,21 @@
+{
+  "name": "ctm-perf",
+  "version": "0.0.1",
+  "description": "Node, express and mongo app that gets and stores performance data for any given urls",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~3.4.8",
+    "yslow": "~3.1.0",
+    "yslowjs": "~0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://boyney123@bitbucket.org/boyney123/perf-tool.git"
+  },
+  "author": "DB",
+  "license": "BSD-2-Clause"
+}
