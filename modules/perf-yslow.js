@@ -1,6 +1,11 @@
 var YSlow = require('yslowjs'); 
 
 
+/*
+	Yslow dataprovider for perf-tool
+
+	Dataprovider can be swapped out for pagespeed (etc)
+*/
 var perfYSlow = function(){
 
 	var _url = "";
@@ -9,15 +14,16 @@ var perfYSlow = function(){
 
 	var parseRawDataIntoRecord = function(data){
 		return {
-			date: new Date(),
+			url: _url,
+			date: Date(),
 			totalPageSize : data.w,
 			totalNumberOfRequests: data.r,
-			loadtime: data.lt
+			loadTime: data.lt
 		}
 	};
 
 	return {
-		saveDataForUrl:function(url){
+		getPerformanceDataForUrl:function(url){
 			_url = url;
 			var yslow = new YSlow(_url, yslowRules);
 			var results = yslow.runSync();
