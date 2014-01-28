@@ -17,6 +17,8 @@ var perfYSlow = function(){
 			url: _url,
 			date: Date(),
 			totalPageSize : data.w,
+			totalNumberOfJavaScriptRequests: data.stats.js.r,
+			totalNumberOfCSSRequests: data.stats.css.r,
 			totalNumberOfRequests: data.r,
 			loadTime: data.lt
 		}

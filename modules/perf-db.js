@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'); 
 
 //connect to mongo db
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/perftool');
 
 var mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error:'));
@@ -13,6 +13,8 @@ var db = function(){
     	url: String,
     	date: { type: Date},
     	totalNumberOfRequests: Number, 
+    	totalNumberOfJavaScriptRequests: Number, 
+    	totalNumberOfCSSRequests: Number,
     	totalPageSize: Number,
     	loadTime: Number
 	});
@@ -44,11 +46,12 @@ var db = function(){
 			}
 
 			PerformanceRecord.find(query)
-			.limit(options.limit)
-			.exec(function(err, data){
-				if(err) return options.error(err);
-				options.success(data);
-			});
+				.limit(options.limit)
+				.sort({date: -1})
+				.exec(function(err, data){
+					if(err) return options.error(err);
+					options.success(data);
+				});
 
 		}
 	}
