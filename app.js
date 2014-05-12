@@ -12,7 +12,7 @@ var app = express();
 	Once called the dataprovider fetches data for the given url.
 	The data is parsed and then stored using the database provider.
 */
-app.get('/storePerformance', function(req, res) {
+app.get('/storePerformanceData', function(req, res) {
 	if(req.query.url){
 		var _dataProvier = dataProvier();
 		var data = _dataProvier.getPerformanceDataForUrl(req.query.url);
