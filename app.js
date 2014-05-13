@@ -8,11 +8,17 @@ var db = require('./modules/perf-db.js')();
 
 var app = express();
 
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 /*
 	Once called the dataprovider fetches data for the given url.
 	The data is parsed and then stored using the database provider.
 */
-app.get('/storePerformanceData', function(req, res) {
+app.get('/storePerformanceData', function(req, res, next) {
 	if(req.query.url){
 		var _dataProvier = dataProvier();
 		var data = _dataProvier.getPerformanceDataForUrl(req.query.url);
@@ -38,7 +44,7 @@ app.get('/storePerformanceData', function(req, res) {
 	startDate=[dd-mm-yyy]	Application will return data within a date range
 	limit=[Number]			How many results that are returned
 */
-app.get('/getPerformanceData', function(req, res) {
+app.get('/getPerformanceData', function(req, res, next) {
 	if(req.query.url){
 		var _dataProvier = dataProvier();
 		var perfData = db.getPerformanceData({
@@ -65,4 +71,4 @@ app.get('/getPerformanceData', function(req, res) {
 });
 
 
-app.listen(3000);
+app.listen(8890);
